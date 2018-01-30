@@ -6,19 +6,19 @@ dataDir = "data/"
 outputPath = "result/"
 outputPath_improve = "result_improve/"
 
-# dataset = "newtweets"
-dataset = "tweetsByTopics"
-# dataset = "TweetsEvents22"
-# dataset = "TweetsEvents22ByTopics"
+# dataset = "TREC"
+dataset = "TREC-T"
+# dataset = "Tweets"
+# dataset = "Tweets-T"
 
 timefil = "timefil"
-MaxBatch = 5
+MaxBatch = 1
 # docNum = 2300
 alpha = 0.02
 K = 0 # Number of clusters
 beta = 0.02
-iterNum = 2
-sampleNum = 1
+iterNum = 10
+sampleNum = 10
 wordsInTopicNum = 5
 
 def runMStreamSimple(K, MaxBatch, alpha, beta, iterNum, sampleNum, dataset, timefil, wordsInTopicNum):
@@ -294,9 +294,9 @@ def runWithMaxBatch(K,  alpha, beta, iterNum, sampleNum, dataset, timefil, words
 
 if __name__ == '__main__':
     # runMStreamSimple(K, MaxBatch, alpha, beta, iterNum, sampleNum, dataset, timefil, wordsInTopicNum)
-    # runMStreamSimple_improve(K, MaxBatch, alpha, beta, iterNum, sampleNum, dataset, timefil, wordsInTopicNum)
+    runMStreamSimple_improve(K, MaxBatch, alpha, beta, iterNum, sampleNum, dataset, timefil, wordsInTopicNum)
     # runWithAlphaScale(beta, K, MaxBatch, iterNum, sampleNum, dataset, timefil, wordsInTopicNum, docNum)
-    runWithAlphaScale_improve(beta, K, MaxBatch, iterNum, sampleNum, dataset, timefil, wordsInTopicNum)
+    # runWithAlphaScale_improve(beta, K, MaxBatch, iterNum, sampleNum, dataset, timefil, wordsInTopicNum)
     # runWithBetas(alpha, K, MaxBatch, iterNum, sampleNum, dataset, timefil, wordsInTopicNum)
     # runWithBetas_improve(alpha, K, MaxBatch, iterNum, sampleNum, dataset, timefil, wordsInTopicNum)
     # runWithNiters(K, MaxBatch, alpha, beta, sampleNum, dataset, timefil, wordsInTopicNum)

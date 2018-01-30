@@ -684,10 +684,10 @@ def MStreamBeta():
     #              [str(round(j * 0.1 * docNum, 1)) for j in range(1, 10)] + [str(1.0)]
     # betaRange_float = [round(i * 0.01 * docNum, 2) for i in range(1, 10, 1)] + \
     #                    [round(j * 0.1 * docNum, 1) for j in range(1, 10)] + [1.0]
-    # betaRange = ['0.02']
-    # betaRange_float = [0.02]
-    betaRange = ['0.014','0.016','0.018','0.02','0.022','0.024']
-    betaRange_float = [0.014,0.016,0.018,0.02,0.022,0.024]
+    betaRange = ['0.02']
+    betaRange_float = [0.02]
+    # betaRange = ['0.014','0.016','0.018','0.02','0.022','0.024', '0.026']
+    # betaRange_float = [0.014,0.016,0.018,0.02,0.022,0.024,0.026]
     # betaRange = ['0.016', '0.018', '0.02', '0.022', '0.024', '0.026', '0.028', '0.03', '0.032', '0.034', '0.04', '0.05', '0.06', '0.07']
     # betaRange_float = [0.016, 0.018, 0.02, 0.022, 0.024, 0.026, 0.028, 0.03, 0.032, 0.034, 0.04, 0.05, 0.06, 0.07]
     # betaRange = ['0.02', '0.03', '0.04', '0.05','0.06', '0.07', '0.08', '0.09', '0.1']
@@ -695,20 +695,20 @@ def MStreamBeta():
     print("betaRange is \n", betaRange)
     # betaRangeStr = '0.01range(1, 11, 1)0.1range(1, 11, 1)'
     betaRangeStr = ''
-    sampleNum = 1
-    iterNum = 2
+    sampleNum = 10
+    iterNum = 10
     alpha = "0.02"
     # alpha_float = 1800.0
     KThreshold = 0
     batchNum = 16
-    dataset = 'newtweets'
-    # dataset = 'tweetsByTopics'
-    # dataset = 'TweetsEvents22'
-    # dataset = 'TweetsEvents22ByTopics'
+    # dataset = "TREC"
+    dataset = "TREC-T"
+    # dataset = "Tweets"
+    # dataset = "Tweets-T"
     datasetPath = './MStream/data/' + dataset
     inPath = './MStream/result_improve/'
     resultFileName = 'MStreamKThreshold%dBetaDataset%salpha%sK%dIterNum%dBetaRange%ssampleNum%d.txt' % (KThreshold, dataset,alpha, K,iterNum, betaRangeStr, sampleNum)
-    resultFilePath = './MStream/result_improve/' + resultFileName
+    resultFilePath = inPath + resultFileName
     MStreamEvaluation = ClusterEvaluation(resultFilePath)
 
     KPredNumMeanList = []
@@ -802,10 +802,10 @@ def MStreamAlpha():
     beta_float = 0.02
     KThreshold = 0
     batchNum = 16
-    dataset = 'newtweets'
-    # dataset = 'tweetsByTopics'
-    # dataset = 'TweetsEvents22'
-    # dataset = 'TweetsEvents22ByTopics'
+    # dataset = "TREC"
+    # dataset = "TREC-T"
+    # dataset = "Tweets"
+    # dataset = "Tweets-T"
     datasetPath = './MStream/data/' + dataset
     # inPath = './MStream/result/'
     inPath = './MStream/result_improve/'
@@ -898,25 +898,26 @@ def MStream_Batch():
     BatchRange_float = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
     K = 0
     # docNum = 1
-    sampleNum = 1
-    iterNum = 2
+    sampleNum = 10
+    iterNum = 10
     alpha = '0.02'
     # alpha_float = 300
     beta = "0.02"
     # beta_float = 0.02
     KThreshold = 0
     batchNum = 16
-    dataset = 'newtweets'
-    # dataset = 'tweetsByTopics'
-    # dataset = 'TweetsEvents22'
-    # dataset = 'TweetsEvents22ByTopics'
+    # dataset = "TREC"
+    dataset = "TREC-T"
+    # dataset = "Tweets"
+    # dataset = "Tweets-T"
     datasetPath = './MStream/data/' + dataset
     # inPath = './MStream/result/'
-    inPath = './MStream/result_improve/'
+    # inPath = './MStream/result_improve/'
+    inPath = './MStream/result_improve_F2/'
     resultFileName = 'Batch_MStreamKThreshold%dDataset%salpha%sbeta%sK%dIterNum%dsampleNum%d.txt' % \
                      (KThreshold, dataset, alpha, beta, K, iterNum, sampleNum)
     # resultFilePath = './MStream/result/' + resultFileName
-    resultFilePath = './MStream/result_improve/' + resultFileName
+    resultFilePath = inPath + resultFileName
     MStreamEvaluation = ClusterEvaluation(resultFilePath)
 
     KPredNumMeanList = []

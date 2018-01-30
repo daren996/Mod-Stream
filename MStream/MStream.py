@@ -5,7 +5,6 @@ class MStream:
     dataDir = "data/"
     outputPath = "result/"
     outputPath_improve = "result_improve/"
-    outputPath_new = "result_new/"
 
     def __init__(self, K, MaxBatch, alpha, beta, iterNum, sampleNum, dataset, timefil, wordsInTopicNum):
         self.K = K

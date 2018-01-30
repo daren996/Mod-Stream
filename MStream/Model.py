@@ -5,8 +5,8 @@ import json
 import copy
 
 AllBatchNum = 16
-threshold_fix = 0.999
-threshold_init = 0.75
+threshold_fix = 1.1
+threshold_init = 0
 
 class Model:
 
@@ -30,14 +30,17 @@ class Model:
         self.readTimeFil(timefil)
 
     def readTimeFil(self, timefil):
-        with open(timefil) as timef:
-            for line in timef:
-                buff = line.strip().split(' ')
-                if buff == ['']:
-                    break
-                self.batchNum2tweetID[self.batchNum] = int(buff[1])
-                self.batchNum += 1
-        self.batchNum = 1
+        try:
+            with open(timefil) as timef:
+                for line in timef:
+                    buff = line.strip().split(' ')
+                    if buff == ['']:
+                        break
+                    self.batchNum2tweetID[self.batchNum] = int(buff[1])
+                    self.batchNum += 1
+            self.batchNum = 1
+        except:
+            print("No timefil!")
         # print("There are", self.batchNum2tweetID.__len__(), "time points.\n\t", self.batchNum2tweetID)
 
     def getAveBatch(self, documentSet, AllBatchNum):
@@ -324,6 +327,8 @@ class Model:
     0 means that it wasn't initialized
     1 means that documents have been initialized but wasn't fixed
     2 means that documents have been fixed
+    
+    Before we process each batch, alpha will be recomputed by the function: alpha = alpha0 * docStored
     '''
     def run_improve(self, documentSet, outputPath, wordList):
         self.D_All = documentSet.D  # The whole number of documents
@@ -854,7 +859,10 @@ class Model:
             print("ERROR: Failed to create directory:", outputDir)
         self.outputClusteringResult(outputDir, documentSet)
         self.estimatePosterior()
-        self.outputPhiWordsInTopics(outputDir, wordList, self.wordsInTopicNum)
+        try:
+            self.outputPhiWordsInTopics(outputDir, wordList, self.wordsInTopicNum)
+        except:
+            print("\tOutput Phi Words Wrong!")
         self.outputSizeOfEachCluster(outputDir, documentSet)
 
     def estimatePosterior(self):
